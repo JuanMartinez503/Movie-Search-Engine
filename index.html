@@ -39,7 +39,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Past Searches
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul id="list" class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>
@@ -48,8 +48,8 @@
               </li>
               
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form id="form" class="d-flex">
+              <input id="input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-primary" type="submit">Search</button>
             </form>
           </div>
@@ -59,6 +59,7 @@
 <main>
     <div class="text-white cont">
         <div id="info">
+          <h1 id="result"></h1>
         <div id="title">Title</div>
         <div id="genre">Genre</div>
         <div id="year">year</div>
@@ -66,7 +67,7 @@
         <p id="plot">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae sit rem dolorem magnam quam, sapiente nihil repudiandae fuga iusto assumenda eligendi commodi numquam! Odit magnam libero molestiae alias quas! Fugiat.</p>
         </div>
         <div id="poster">
-            <img src='https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80' alt="">
+            <img id='img' src='https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80' alt="">
         </div>
 
 
