@@ -1,0 +1,39 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Pacifico&display=swap');
+
+* {
+    font-family: 'Coming Soon', cursive;
+}
+:root{
+    --red: #dc3545;
+    --white: white;
+}
+html{
+    height: 100%;
+}
+nav {
+    background-color: var(--red) !important;
+    color: var(--white)!important;
+}
+body {
+    background:url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'); 
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+    
+}
+main {
+    min-height: 100vh;
+    background-color: rgba(0,0,0,.75)
+}
+.cont {
+    display: flex;
+    border: 1px solid white;
+}
+#poster img{
+    width: 250px;
+    height: 250px;
+}
+#poster {
+    border: 1px solid white;
+}
