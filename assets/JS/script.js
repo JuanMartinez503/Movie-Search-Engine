@@ -25,8 +25,21 @@ $(document).ready(function() {
             year.text('');
             rating.text('');
             plot.text('');
-            imagePoster.text('');            
+            imagePoster.attr('scr','..' );           
             return;
+          
+        }
+        if (!pastSearches.includes(movieTitle)) {
+          pastSearches.push(movieTitle);
+          localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
+          var li = $('<li>').text(movieTitle);
+          li.addClass('dropdown-item')
+          $('#list').append(li);
+          li.on('click', function(e){
+            console.log('hi');
+            input.val($(e.target).text())
+            movieSearch()
+          })
         }
         console.log(data);
         result.text('')
@@ -37,13 +50,18 @@ $(document).ready(function() {
         plot.text(`Plot: ${data.Plot}`);
         imagePoster.attr('src', data.Poster);
       })
-      if (!pastSearches.includes(movieTitle)) {
-        pastSearches.push(movieTitle);
-        localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
-        var li = $('<li>').text(movieTitle);
-        $('#list').append(li);
-      }
+   
   }
+for (var i = 0;i < pastSearches.length; i++){
+  var li = $('<li>').text(pastSearches[i]);
+  li.addClass('dropdown-item')
+  $('#list').append(li);
+  li.on('click', function(e){
+    console.log('hello');
+    input.val($(e.target).text())
+    movieSearch()
+  })
+}
 
   form.on('submit', function(event) {
     event.preventDefault();
