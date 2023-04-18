@@ -12,13 +12,13 @@ $(document).ready(function() {
   var apiKey2 = 'd2d236a60e31f84f94b8f09b4f4d0a56'
 
   var pastSearches = JSON.parse(localStorage.getItem('pastSearches')) || [];
-
+                 // Function for Movie Search OMDB 
   function movieSearch() {
     var movieTitle = input.val().trim();
     fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`)
       .then(function(response) {
         return response.json();
-      })
+      })              // Fetch API 
       .then(function(data) {
         if(data.Response === 'False') {
             result.text('No results found!');
@@ -29,8 +29,8 @@ $(document).ready(function() {
             plot.text('');
             imagePoster.attr('scr','..' );           
             return;
-          
-        }
+                 
+        }         //Past Searches
         if (!pastSearches.includes(movieTitle)) {
           pastSearches.push(movieTitle);
           localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
@@ -42,7 +42,10 @@ $(document).ready(function() {
             input.val($(e.target).text())
             movieSearch()
           })
-        }
+        }            // Borders and Data 
+        $('#info').addClass('infoborder')
+        $('#poster img').addClass('posterimage')
+        $('#streaminfo').addClass('streaminfo', 'mx-3')
         console.log(data);
         result.text('')
         title.text(`Title: ${data.Title}`);
@@ -65,7 +68,7 @@ for (var i = 0;i < pastSearches.length; i++){
     input.val($(e.target).text())
     movieSearch()
   })
-}
+}                               //Fetch Wiki API 
 function wikiSearch (){
   var providerSearch = input.val().trim();
 
