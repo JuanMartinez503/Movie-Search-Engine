@@ -27,7 +27,9 @@ $(document).ready(function() {
             year.text('');
             rating.text('');
             plot.text('');
-            imagePoster.attr('scr','..' );           
+            imagePoster.attr('src','')
+            $('#stream').empty()
+            $('#places').empty()
             return;
           
         }
@@ -79,13 +81,15 @@ function wikiSearch (){
         console.log(data);
         const watchProviders = data.results.US.flatrate; // get the list of watch providers for the US region
         console.log(watchProviders); // log the list of watch providers to the console
+        $('#stream').empty()
         $('#places').text('Places to stream!')
+
         for (var i =0; i<watchProviders.length;i++){
           // var img = $('<img>')
           // img.attr('src',`https://www.themoviedb.org/movie/${movieId}/watch?locale=US/${watchProviders[i].logo_path }`)
           // $('#wiki').append(img)
           var h3 = $('<h3>')
-
+          
           h3.text(watchProviders[i].provider_name)
 
           $('#stream').append(h3)
@@ -94,10 +98,7 @@ function wikiSearch (){
   })
 
 }
-$('#btn').on('click', ()=>{
 
-
-})
 
   form.on('submit', function(event) {
     event.preventDefault();
