@@ -16,7 +16,7 @@ $(document).ready(function() {
                  // Function for Movie Search OMDB 
   function movieSearch() {
     var movieTitle = input.val().trim();
-    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`)
+    fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`)
       .then(function(response) {
         return response.json();
       })              // Fetch API 
@@ -133,7 +133,7 @@ function hideSuggestions(){
   input.on('keyup', function(event) {
     var query = $(this).val().trim();
     if (query.length > 0) {
-      fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
+      fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
         .then(function(response) {
           return response.json();
         })
