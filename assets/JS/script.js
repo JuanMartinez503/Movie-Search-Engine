@@ -11,8 +11,9 @@ $(document).ready(function() {
   var imagePoster =$('#img')
   var apiKey2 = 'd2d236a60e31f84f94b8f09b4f4d0a56'
   var suggestionsList = $('#suggestion-list')
-
+// These are the global variables we used throughout the project
   var pastSearches = JSON.parse(localStorage.getItem('pastSearches')) || [];
+  // This variable is used to make the local storage and push up to an empty array 
                  // Function for Movie Search OMDB 
   function movieSearch() {
     var movieTitle = input.val().trim();
@@ -22,6 +23,7 @@ $(document).ready(function() {
       })              // Fetch API 
       .then(function(data) {
         if(data.Response === 'False') {
+          //This if statement runs if there are no movies found
             result.text('No results found!');
             title.text('');
             genre.text('');
@@ -38,6 +40,7 @@ $(document).ready(function() {
             return;
                  
         }         //Past Searches
+        // If the past searches are not unique, then they will not be stored.
         if (!pastSearches.includes(movieTitle)) {
           pastSearches.push(movieTitle);
           localStorage.setItem('pastSearches', JSON.stringify(pastSearches));
@@ -47,6 +50,7 @@ $(document).ready(function() {
           li.on('click', function(e){
             console.log('hi');
             input.val($(e.target).text())
+            // This is the input value depending on the Li that we clicked on and then it runs the movie search function. 
             movieSearch()
           })
         }            // Borders and Data 
@@ -65,17 +69,20 @@ $(document).ready(function() {
 
       streamSearch()
    
-  }
-for (var i = 0;i < pastSearches.length; i++){
+  }  
+  // This function will run on page load and then will look for our past searches 
+  function init(){
+    for (var i = 0;i < pastSearches.length; i++){
   var li = $('<li>').text(pastSearches[i]);
   li.addClass('dropdown-item')
   $('#list').append(li);
   li.on('click', function(e){
-    console.log('hello');
     input.val($(e.target).text())
     movieSearch()
   })
-}                               //Fetch Wiki API 
+} 
+}                              //Fetch Wiki API 
+// This function will check where the movie is being streamed in the US.
 function streamSearch (){
   var providerSearch = input.val().trim();
 
@@ -94,7 +101,7 @@ function streamSearch (){
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?locale=US&api_key=${apiKey2}`)
       .then(response => response.json())
       .then(data => {
-    if (data.results.US.flatrate===undefined){
+    if (data.results.US.flatrate===undefined){ // This checks for the movies being streamed in the US.
       $('#places').text('No available places to stream!')
       $('#stream').empty()
 
@@ -108,10 +115,9 @@ function streamSearch (){
         $('#stream').empty()
         $('#places').text('Places to stream!')
 
+        // This for loop will give us the name of the US movie providers.
         for (var i =0; i<watchProviders.length;i++){
-          // var img = $('<img>')
-          // img.attr('src',`https://www.themoviedb.org/movie/${movieId}/watch?locale=US/${watchProviders[i].logo_path }`)
-          // $('#wiki').append(img)
+          
           var h3 = $('<h3>')
           
           h3.text(watchProviders[i].provider_name)
@@ -121,16 +127,17 @@ function streamSearch (){
       })
   })
 
-}
+} // This function hides suggestions.
 function hideSuggestions(){
   suggestionsList.empty()
 }
-
+// This submit event starts the function.
   form.on('submit', function(event) {
     event.preventDefault();
     movieSearch();
   })
-  input.on('keyup', function(event) {
+  // This keyup event checks the API for movie suggestions.
+  input.on('keyup', function() {
     var query = $(this).val().trim();
     if (query.length > 0) {
       fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
@@ -170,5 +177,5 @@ function hideSuggestions(){
     // Show the suggestions
     suggestionsList.show();
   }
-
+init()
 })
