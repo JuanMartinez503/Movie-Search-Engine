@@ -82,17 +82,25 @@ function streamSearch (){
   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey2}&query=${providerSearch}`)
   .then(response => response.json())
   .then(data => {
+    console.log(data.results);
     
-    if (data.results.id ===undefined){
+    if (data.results.length===0){
       $('#places').text('No available places to stream!')
-      return
+      throw 'error'
     }
     const movieId = data.results[0].id; // get the ID of the first movie in the results array
+
         
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?locale=US&api_key=${apiKey2}`)
       .then(response => response.json())
       .then(data => {
-    
+    if (data.results.US.flatrate===undefined){
+      $('#places').text('No available places to stream!')
+      $('#stream').empty()
+
+
+      throw 'error'
+    }
         
         console.log(data);
         const watchProviders = data.results.US.flatrate; // get the list of watch providers for the US region
