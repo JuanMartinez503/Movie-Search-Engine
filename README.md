@@ -2,7 +2,9 @@
 
 ## Description
 
-A website where you can search for movie information such as, Title, Year Released, Genre, and Plot. Additionally the site will also auto-generate information on the streaming services that are currently  
+A website where you can search for movie information such as, Title, Year Released, Genre, and Plot. Additionally the site will also auto-generate information on the streaming services that are currently. 
+We used the first API to gather the movie poster image and the info that goes in the info box
+The second API we used gives us the info about where the movie is streaming.  
 
 
 ## URL's
@@ -26,4 +28,5 @@ https://www.digitalocean.com/community/tutorials/how-to-change-a-css-background-
 https://getbootstrap.com/docs/5.1/getting-started/introduction/ 
 https://code.jquery.com/jquery-3.4.1.min.js
 https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js 
+https://www.google.com/ 
 
