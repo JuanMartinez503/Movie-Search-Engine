@@ -10,6 +10,7 @@ $(document).ready(function() {
   var result = $('#result');
   var imagePoster =$('#img')
   var apiKey2 = 'd2d236a60e31f84f94b8f09b4f4d0a56'
+  var suggestionsList = $('#suggestion-list')
 
   var pastSearches = JSON.parse(localStorage.getItem('pastSearches')) || [];
                  // Function for Movie Search OMDB 
@@ -28,6 +29,10 @@ $(document).ready(function() {
             rating.text('');
             plot.text('');
             imagePoster.attr('src','')
+            imagePoster.removeClass('posterimage')
+            $('#info').removeClass('infoborder')
+            
+            $('#streaminfo').removeClass('streaminfo', 'mx-3')
             $('#stream').empty()
             $('#places').empty()
             return;
@@ -46,7 +51,7 @@ $(document).ready(function() {
           })
         }            // Borders and Data 
         $('#info').addClass('infoborder')
-        $('#poster img').addClass('posterimage')
+        imagePoster.addClass('posterimage')
         $('#streaminfo').addClass('streaminfo', 'mx-3')
         console.log(data);
         result.text('')
@@ -58,7 +63,7 @@ $(document).ready(function() {
         imagePoster.attr('src', data.Poster);
       })
 
-      wikiSearch()
+      streamSearch()
    
   }
 for (var i = 0;i < pastSearches.length; i++){
@@ -71,16 +76,24 @@ for (var i = 0;i < pastSearches.length; i++){
     movieSearch()
   })
 }                               //Fetch Wiki API 
-function wikiSearch (){
+function streamSearch (){
   var providerSearch = input.val().trim();
 
   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey2}&query=${providerSearch}`)
   .then(response => response.json())
   .then(data => {
+    
+    if (data.results.id ===undefined){
+      $('#places').text('No available places to stream!')
+      return
+    }
     const movieId = data.results[0].id; // get the ID of the first movie in the results array
+        
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?locale=US&api_key=${apiKey2}`)
       .then(response => response.json())
       .then(data => {
+    
+        
         console.log(data);
         const watchProviders = data.results.US.flatrate; // get the list of watch providers for the US region
         console.log(watchProviders); // log the list of watch providers to the console
@@ -101,10 +114,53 @@ function wikiSearch (){
   })
 
 }
-
+function hideSuggestions(){
+  suggestionsList.empty()
+}
 
   form.on('submit', function(event) {
     event.preventDefault();
     movieSearch();
   })
+  input.on('keyup', function(event) {
+    var query = $(this).val().trim();
+    if (query.length > 0) {
+      fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          if (data.Response === 'True') {
+            var suggestions = data.Search.map(function(movie) {
+              return movie.Title;
+            });
+            showSuggestions(suggestions);
+          } else {
+            hideSuggestions();
+          }
+        });
+    } else {
+      hideSuggestions();
+    }
+  });
+  
+  function showSuggestions(suggestions) {
+    
+    // Remove any previous suggestions
+    suggestionsList.empty();
+    // Add a list item for each suggestion
+    for (var i = 0; i < suggestions.length; i++) {
+      var suggestion = suggestions[i];
+      var listItem = $('<li>').text(suggestion);
+      listItem.addClass(' px-2 text-dark')
+      suggestionsList.append(listItem);
+      listItem.on('click', function(e){
+        input.val($(this).text());
+        movieSearch();
+      })
+    }
+    // Show the suggestions
+    suggestionsList.show();
+  }
+
 })
