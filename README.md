@@ -2,16 +2,15 @@
 
 ## Description
 
-A website where you can search for movie information such as, Title, Year Released, Genre, and Plot. Additionally the site will also auto-generate information on the streaming services that are currently. 
-We used the first API to gather the movie poster image and the info that goes in the info box
-The second API we used gives us the info about where the movie is streaming.  
-
+A website where you can search for movie information such as, Title, Year Released, Genre, and Plot. Additionally the site will also auto-generate information on the streaming services that are currently playing the movie. A list of the past searches will be saved using local storage. And a list of movie titles with matching words to your search will be listed as well.
+We used the first API to gather the movie poster image and the info that goes in the info box. The second API we used gives us the info about where the movie is streaming.  
+Used HTML, CSS, and JavaScript to build the app.
 
 ## URL's
 
-[github](https://github.com/JuanMartinez503/theprojectthereis.git)
+[github](https://github.com/JuanMartinez503/Movie-Search-Engine)
 
-[live site]()
+[live site](https://juanmartinez503.github.io/Movie-Search-Engine/)
 
 
 ## Screenshot of Project
