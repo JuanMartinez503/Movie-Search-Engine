@@ -1,5 +1,8 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Pacifico&display=swap');
+* {
+    text-shadow: .5 .5 2px;
+}
 
 header {
     font-family: 'Coming Soon', cursive;
@@ -16,11 +19,14 @@ nav {
     color: var(--white)!important;
     padding: 10px;
 }
+.navbar-brand {
+    font-size: 2.2rem;
+}
 body {
     background:url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'); 
     background-size: cover;
     background-position: center;
-    min-height: 100%;
+    
     
 }
 main {
@@ -28,8 +34,19 @@ main {
     background-color: rgba(0,0,0,.85)
 }
 .cont {
-    display: flex;
     
+    display: flex;
+    justify-content: space-between;
+    
+}
+#info p{
+    font-size: 1.2rem;
+}
+#title{
+    width: 100% !important;
+    text-align: center;
+    color: var(--red);
+    font-size: 2rem !important;
 }
 #poster img{
     width: 100%;
@@ -51,20 +68,24 @@ section{
 }
 
 .infoborder{
-    border: 4px;
+    border: 2px;
     border-style:  solid;
     border-color: #fafafa;
     padding-left: 2%;
+    border-radius: 20px;
 }
 .posterimage{
-    border: 4px;
+    border: 2px;
     border-style: solid;
     border-color: #dc3545;
+    border-radius: 20px;
 }
 .streaminfo{
-    border: 4px;
+    border: 2px;
     border-style:  solid;
     border-color: #fafafa;
+   text-align: center;
+   border-radius: 20px;
 }
 #suggestion-list {
     list-style: none;
@@ -72,3 +93,39 @@ section{
     transform: translateX(-3.5%);
     
 }
+@media screen and (max-width:991px) {
+    .cont {
+        flex-direction: column-reverse;
+    }
+    #info {
+        width: 85%;
+        margin: 4% auto;
+    }
+    #poster {
+        width: 85%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-width:300px) {
+    .navbar-toggler {
+        margin: 0 auto;
+    }
+}
+@media (min-width: 1440px) {
+    html {
+      zoom: 1.2;
+    }
+  }
+  
+  @media (min-width: 2560px) {
+    html {
+      zoom: 1.7;
+    }
+  }
+  
+  @media (min-width: 3860px) {
+    html {
+      zoom: 2.5;
+    }
+  }
