@@ -41,11 +41,13 @@ main {
 }
 #info p{
     font-size: 1.2rem;
+    color: black;
+    z-index:10 !important;
 }
 #title{
     width: 100% !important;
     text-align: center;
-    color: var(--red);
+    color: var(--red) !important;
     font-size: 2rem !important;
 }
 #poster img{
@@ -56,9 +58,21 @@ main {
 
 
 #info {
+    
     margin-bottom: 10px;
     margin-top:10px; 
   
+}
+#info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(15px);
+    z-index: -1;
 }
 
 section{
@@ -68,24 +82,53 @@ section{
 }
 
 .infoborder{
-    border: 2px;
-    border-style:  solid;
-    border-color: #fafafa;
+    position: relative;
     padding-left: 2%;
     border-radius: 20px;
+    background-color: rgba(255,255,255,.35);
+    z-index: 1;
+    padding: 20px; /* Add padding to create depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.infoborder::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(15px);
+    z-index: -1;
 }
 .posterimage{
     border: 2px;
     border-style: solid;
     border-color: #dc3545;
     border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255,255,255,.1);
 }
+
 .streaminfo{
-    border: 2px;
-    border-style:  solid;
-    border-color: #fafafa;
+    position: relative;
+    background-color: rgba(255,255,255,.35);
+
    text-align: center;
    border-radius: 20px;
+   z-index: 1;
+   padding: 10px;
+   box-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.streaminfo::before{
+    content: '';
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(20px);
+    z-index: -1;
 }
 #suggestion-list {
     list-style: none;
