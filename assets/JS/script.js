@@ -30,7 +30,7 @@ $(document).ready(function () {
           year.text("");
           rating.text("");
           plot.text("");
-          imagePoster.attr("src", "");
+          imagePoster.attr("src", " ");
           imagePoster.removeClass("posterimage");
           $("#info").removeClass("infoborder");
 
@@ -56,7 +56,7 @@ $(document).ready(function () {
         imagePoster.addClass("posterimage");
         $("#streaminfo").addClass("streaminfo", "mx-3");
         result.text("");
-        title.text(`Title: ${data.Title}`);
+        title.text(`${data.Title}`);
         genre.text(`Genre: ${data.Genre}`);
         year.text(`Year Released: ${data.Year}`);
         rating.text(`Rated: ${data.Rated}`);
